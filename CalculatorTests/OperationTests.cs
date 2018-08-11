@@ -9,8 +9,10 @@ namespace CalculatorTests
         [TestMethod]
         public void TestAddition()
         {
-            Assert.AreEqual(Operations.Add(1, 1), 2);
-            Assert.AreEqual(Operations.Add(2.5M, 2.5M), 5.0M);
+            AddOperator addExpression = new AddOperator();
+            addExpression.SetFirstOperand(new Value(1.5M));
+            addExpression.SetSecondOperand(new Value(1.5M));
+            Assert.AreEqual(addExpression.Evaluate(), 3.0M);
         }
 
         [TestMethod]
