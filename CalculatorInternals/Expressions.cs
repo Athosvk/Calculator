@@ -26,72 +26,30 @@
     /// <summary>
     /// Represents an add operation
     /// </summary>
-    public class AddOperator : IExpression
+    public class AddOperator : BinaryOperator
     {
-        /// <summary>
-        /// Sets the first operand of this add expression
-        /// </summary>
-        /// <param name="a_Value">The value for the first operand</param>
-        public void SetFirstOperand(IExpression a_Value)
-        {
-            m_FirstOperand = a_Value;
-        }
-
-        /// <summary>
-        /// Sets the second operand of this add expression
-        /// </summary>
-        /// <param name="a_Value">The value for the second operand</param>
-        public void SetSecondOperand(IExpression a_Value)
-        {
-            m_SecondOperand = a_Value;
-        }
-
         /// <summary>
         /// Evaluates (folds) the expression to a single value, evaluating all its operands
         /// </summary>
         /// <returns>The result of the expression</returns>
-        public decimal Evaluate()
+        public override decimal Evaluate()
         {
             return m_FirstOperand.Evaluate() + m_SecondOperand.Evaluate();
         }
-
-        private IExpression m_FirstOperand;
-        private IExpression m_SecondOperand;
     }
 
     /// <summary>
     /// Represents an add operation
     /// </summary>
-    public class SubtractionOperator : IExpression
+    public class SubtractionOperator : BinaryOperator
     {
-        /// <summary>
-        /// Sets the first operand of this add expression
-        /// </summary>
-        /// <param name="a_Value">The value for the first operand</param>
-        public void SetFirstOperand(IExpression a_Value)
-        {
-            m_FirstOperand = a_Value;
-        }
-
-        /// <summary>
-        /// Sets the second operand of this add expression
-        /// </summary>
-        /// <param name="a_Value">The value for the second operand</param>
-        public void SetSecondOperand(IExpression a_Value)
-        {
-            m_SecondOperand = a_Value;
-        }
-
         /// <summary>
         /// Evaluates (folds) the expression to a single value, evaluating all its operands
         /// </summary>
         /// <returns>The result of the expression</returns>
-        public decimal Evaluate()
+        public override decimal Evaluate()
         {
             return m_FirstOperand.Evaluate() - m_SecondOperand.Evaluate();
         }
-
-        private IExpression m_FirstOperand;
-        private IExpression m_SecondOperand;
     }
 }
