@@ -26,7 +26,9 @@
         /// <returns>The stringified value</returns>
         public override string ToString()
         {
-            return m_Value.ToString();
+            // 'G' specifier specifies precision, which has a max of 29 digits
+            // for decimals anyway
+            return m_Value.ToString("G29");
         }
 
         private decimal m_Value;

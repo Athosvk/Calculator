@@ -20,65 +20,58 @@ namespace Calculator
 
         private void Value0Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(0);
+            OnDigitPressed(0);
         }
 
         private void Value1Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(1);
+            OnDigitPressed(1);
         }
 
         private void Value2Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(2);
+            OnDigitPressed(2);
         }
 
         private void Value3Button_CLick(object sender, EventArgs e)
         {
-            OnValueButtonClicked(3);
+            OnDigitPressed(3);
         }
 
         private void Value4Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(4);
+            OnDigitPressed(4);
         }
 
         private void Value5Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(5);
+            OnDigitPressed(5);
         }
 
         private void Value6Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(6);
+            OnDigitPressed(6);
         }
 
         private void Value7Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(7);
+            OnDigitPressed(7);
         }
 
         private void Value8Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(8);
+            OnDigitPressed(8);
         }
 
         private void Value9Button_Click(object sender, EventArgs e)
         {
-            OnValueButtonClicked(9);
+            OnDigitPressed(9);
         }
 
-        private void OnValueButtonClicked(int inValue)
+        private void OnDigitPressed(byte inValue)
         {
-            if (m_FirstValue != null && m_OperatorPressed)
-            {
-                (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(inValue));
-            }
-            else
-            {
-                m_FirstValue = new Value(inValue);
-                m_CurrentExpression = m_FirstValue;
-            }
+            m_ValueBuilder.PushDigit(inValue);
+            m_CurrentExpression = new Value(m_ValueBuilder.GetValue());
             RefreshResult();
         }
 
@@ -92,25 +85,21 @@ namespace Calculator
             {
                 Display.Text = "Nothing was entered";
             }
-            m_FirstValue = null;
             m_CurrentExpression = null;
-            m_OperatorPressed = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            m_OperatorPressed = true;
             AddOperator addOperation = new AddOperator();
-            addOperation.SetFirstOperand(m_FirstValue);
+            addOperation.SetFirstOperand(m_CurrentExpression);
             m_CurrentExpression = addOperation;
             RefreshResult();
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
-            m_OperatorPressed = true;
             SubtractionOperator subtractOperation = new SubtractionOperator();
-            subtractOperation.SetFirstOperand(m_FirstValue);
+            subtractOperation.SetFirstOperand(m_CurrentExpression);
             m_CurrentExpression = subtractOperation;
             RefreshResult();
         }
@@ -120,8 +109,7 @@ namespace Calculator
             Display.Text = m_CurrentExpression.ToString();
         }
 
-        private IExpression m_FirstValue;
-        private bool m_OperatorPressed;
+        private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="ExpressionDisplayTests.cs" />
     <Compile Include="OperatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
