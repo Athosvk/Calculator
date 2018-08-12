@@ -92,8 +92,7 @@ namespace Calculator
             {
                 Display.Text = "Nothing was entered";
             }
-            m_CurrentExpression = null;
-            m_ValueBuilder.Clear();
+            Clear();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -114,12 +113,25 @@ namespace Calculator
             RefreshResult();
         }
 
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            Clear();
+            RefreshResult();
+        }
+
         private void RefreshResult()
         {
-            Display.Text = m_CurrentExpression.ToString();
+            Display.Text = m_CurrentExpression != null ? m_CurrentExpression.ToString() : "";
+        }
+        
+        private void Clear()
+        {
+            m_CurrentExpression = null;
+            m_ValueBuilder.Clear();
         }
 
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
+
     }
 }
