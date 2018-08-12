@@ -113,6 +113,15 @@ namespace Calculator
             RefreshResult();
         }
 
+        private void MultiplyButton_Click(object sender, EventArgs e)
+        {
+            MultiplicationOperator multiplicationOperation = new MultiplicationOperator();
+            multiplicationOperation.SetFirstOperand(m_CurrentExpression);
+            m_CurrentExpression = multiplicationOperation;
+            m_ValueBuilder.Clear();
+            RefreshResult();
+        }
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
@@ -132,6 +141,5 @@ namespace Calculator
 
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
-
     }
 }

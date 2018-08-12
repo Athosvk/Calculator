@@ -46,5 +46,22 @@ namespace CalculatorTests
             subtractOperation.SetFirstOperand(new Value(1.0M));
             Assert.AreEqual("1 - ".Replace(" ", ""), subtractOperation.ToString().Replace(" ", ""));
         }
+
+        [TestMethod]
+        public void TestPrintMultiplicationExpression()
+        {
+            BinaryOperator multiplicationOperation = new MultiplicationOperator();
+            multiplicationOperation.SetFirstOperand(new Value(2.9M));
+            multiplicationOperation.SetSecondOperand(new Value(3.0M));
+            Assert.AreEqual("2.9 × 3".Replace(" ", ""), multiplicationOperation.ToString().Replace(" ", ""));
+        }
+
+        [TestMethod]
+        public void TestPrintIncompleteMultiply()
+        {
+            BinaryOperator multiplyOperation = new MultiplicationOperator();
+            multiplyOperation.SetFirstOperand(new Value(1.0M));
+            Assert.AreEqual("1 X ".Replace(" ", ""), multiplyOperation.ToString().Replace(" ", ""));
+        }
     }
 }
