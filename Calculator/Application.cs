@@ -72,7 +72,7 @@ namespace Calculator
         {
             if (m_FirstValue != null && m_AddPressed)
             {
-                (m_CurrentExpression as AddOperator).SetSecondOperand(new Value(inValue));
+                (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(inValue));
             }
             else
             {
@@ -105,6 +105,14 @@ namespace Calculator
             AddOperator addOperation = new AddOperator();
             addOperation.SetFirstOperand(m_FirstValue);
             m_CurrentExpression = addOperation;
+        }
+
+        private void SubtractButton_Click(object sender, EventArgs e)
+        {
+            m_AddPressed = true;
+            SubtractionOperator subtractOperation = new SubtractionOperator();
+            subtractOperation.SetFirstOperand(m_FirstValue);
+            m_CurrentExpression = subtractOperation;
         }
 
         private IExpression m_FirstValue;
