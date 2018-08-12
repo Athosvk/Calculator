@@ -71,7 +71,14 @@ namespace Calculator
         private void OnDigitPressed(byte inValue)
         {
             m_ValueBuilder.PushDigit(inValue);
-            m_CurrentExpression = new Value(m_ValueBuilder.GetValue());
+            if (m_CurrentExpression == null || m_CurrentExpression is Value)
+            {
+                m_CurrentExpression = new Value(m_ValueBuilder.GetValue());
+            }
+            else
+            {
+                (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(m_ValueBuilder.GetValue()));
+            }
             RefreshResult();
         }
 
@@ -79,13 +86,14 @@ namespace Calculator
         {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString("G29");
             }
             else
             {
                 Display.Text = "Nothing was entered";
             }
             m_CurrentExpression = null;
+            m_ValueBuilder.Clear();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -93,6 +101,7 @@ namespace Calculator
             AddOperator addOperation = new AddOperator();
             addOperation.SetFirstOperand(m_CurrentExpression);
             m_CurrentExpression = addOperation;
+            m_ValueBuilder.Clear();
             RefreshResult();
         }
 
@@ -101,6 +110,7 @@ namespace Calculator
             SubtractionOperator subtractOperation = new SubtractionOperator();
             subtractOperation.SetFirstOperand(m_CurrentExpression);
             m_CurrentExpression = subtractOperation;
+            m_ValueBuilder.Clear();
             RefreshResult();
         }
 

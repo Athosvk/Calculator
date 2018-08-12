@@ -34,9 +34,15 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        public void TestEmptyAfterClear()
+        public void TestAfterClear()
         {
             ValueBuilder builder = new ValueBuilder();
+            builder.PushDigit(1);
+
+            builder.Clear();
+
+            builder.PushDigit(2);
+            Assert.AreEqual(2, builder.GetValue());
         }
     }
 }

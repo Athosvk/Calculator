@@ -38,6 +38,14 @@ namespace CalculatorInternals
             m_Digits.Add(a_Digit);
         }
 
+        /// <summary>
+        /// Clears the currently built value (i.e. resets it to 0.0)
+        /// </summary>
+        public void Clear()
+        {
+            m_Digits.Clear();
+        }
+
         List<byte> m_Digits = new List<byte>();
     }
 }
