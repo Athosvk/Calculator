@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CalculatorInternals;
 
 namespace Calculator
 {
@@ -17,14 +18,110 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Value0Button_Click(object sender, EventArgs e)
         {
-
+            OnValueButtonClicked(0);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Value1Button_Click(object sender, EventArgs e)
         {
-
+            OnValueButtonClicked(1);
         }
+
+        private void Value2Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(2);
+        }
+
+        private void Value3Button_CLick(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(3);
+        }
+
+        private void Value4Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(4);
+        }
+
+        private void Value5Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(5);
+        }
+
+        private void Value6Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(6);
+        }
+
+        private void Value7Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(7);
+        }
+
+        private void Value8Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(8);
+        }
+
+        private void Value9Button_Click(object sender, EventArgs e)
+        {
+            OnValueButtonClicked(9);
+        }
+
+        private void OnValueButtonClicked(int inValue)
+        {
+            if (m_FirstValue != null && m_OperatorPressed)
+            {
+                (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(inValue));
+            }
+            else
+            {
+                m_FirstValue = new Value(inValue);
+                m_CurrentExpression = m_FirstValue;
+            }
+            RefreshResult();
+        }
+
+        private void ResultButton_Click(object sender, EventArgs e)
+        {
+            if (m_CurrentExpression != null)
+            {
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
+            }
+            else
+            {
+                Display.Text = "Nothing was entered";
+            }
+            m_FirstValue = null;
+            m_CurrentExpression = null;
+            m_OperatorPressed = false;
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            m_OperatorPressed = true;
+            AddOperator addOperation = new AddOperator();
+            addOperation.SetFirstOperand(m_FirstValue);
+            m_CurrentExpression = addOperation;
+            RefreshResult();
+        }
+
+        private void SubtractButton_Click(object sender, EventArgs e)
+        {
+            m_OperatorPressed = true;
+            SubtractionOperator subtractOperation = new SubtractionOperator();
+            subtractOperation.SetFirstOperand(m_FirstValue);
+            m_CurrentExpression = subtractOperation;
+            RefreshResult();
+        }
+
+        private void RefreshResult()
+        {
+            Display.Text = m_CurrentExpression.ToString();
+        }
+
+        private IExpression m_FirstValue;
+        private bool m_OperatorPressed;
+        private IExpression m_CurrentExpression;
     }
 }
