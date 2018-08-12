@@ -44,6 +44,7 @@
             this.SubtractButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.MultiplyButton = new System.Windows.Forms.Button();
+            this.DivisionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ResultButton
@@ -220,12 +221,24 @@
             this.MultiplyButton.UseVisualStyleBackColor = true;
             this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
             // 
+            // DivisionButton
+            // 
+            this.DivisionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DivisionButton.Location = new System.Drawing.Point(387, 99);
+            this.DivisionButton.Name = "DivisionButton";
+            this.DivisionButton.Size = new System.Drawing.Size(146, 81);
+            this.DivisionButton.TabIndex = 17;
+            this.DivisionButton.Text = "÷";
+            this.DivisionButton.UseVisualStyleBackColor = true;
+            this.DivisionButton.Click += new System.EventHandler(this.DivisionButton_Click);
+            // 
             // Application
             // 
             this.AcceptButton = this.ResultButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 540);
+            this.Controls.Add(this.DivisionButton);
             this.Controls.Add(this.MultiplyButton);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.SubtractButton);
@@ -267,6 +280,7 @@
         private System.Windows.Forms.Button SubtractButton;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button MultiplyButton;
+        private System.Windows.Forms.Button DivisionButton;
     }
 }
 

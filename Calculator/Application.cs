@@ -97,27 +97,32 @@ namespace Calculator
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            AddOperator addOperation = new AddOperator();
-            addOperation.SetFirstOperand(m_CurrentExpression);
-            m_CurrentExpression = addOperation;
-            m_ValueBuilder.Clear();
-            RefreshResult();
+            OnOperatorClick(new AddOperator());
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
-            SubtractionOperator subtractOperation = new SubtractionOperator();
-            subtractOperation.SetFirstOperand(m_CurrentExpression);
-            m_CurrentExpression = subtractOperation;
-            m_ValueBuilder.Clear();
-            RefreshResult();
+            OnOperatorClick(new SubtractionOperator());
         }
 
         private void MultiplyButton_Click(object sender, EventArgs e)
         {
-            MultiplicationOperator multiplicationOperation = new MultiplicationOperator();
-            multiplicationOperation.SetFirstOperand(m_CurrentExpression);
-            m_CurrentExpression = multiplicationOperation;
+            OnOperatorClick(new MultiplicationOperator());
+        }
+
+        private void DivisionButton_Click(object sender, EventArgs e)
+        {
+            OnOperatorClick(new DivisionOperator());
+        }
+
+        /// <summary>
+        /// Invoked when an operator has been clicked
+        /// </summary>
+        /// <param name="a_Operator">The operator the user intended to invoke</param>
+        private void OnOperatorClick(BinaryOperator a_Operator)
+        {
+            a_Operator.SetFirstOperand(m_CurrentExpression);
+            m_CurrentExpression = a_Operator;
             m_ValueBuilder.Clear();
             RefreshResult();
         }
