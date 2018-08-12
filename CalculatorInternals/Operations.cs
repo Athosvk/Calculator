@@ -88,7 +88,7 @@
         /// <returns>The result of the expression</returns>
         public decimal Evaluate()
         {
-            return m_FirstOperand.Evaluate() + m_SecondOperand.Evaluate();
+            return m_FirstOperand.Evaluate() - m_SecondOperand.Evaluate();
         }
 
         private IExpression m_FirstOperand;
