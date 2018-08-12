@@ -46,7 +46,7 @@
             // ResultButton
             // 
             this.ResultButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResultButton.Location = new System.Drawing.Point(397, 370);
+            this.ResultButton.Location = new System.Drawing.Point(397, 373);
             this.ResultButton.Name = "ResultButton";
             this.ResultButton.Size = new System.Drawing.Size(146, 81);
             this.ResultButton.TabIndex = 0;
@@ -176,7 +176,7 @@
             // AddButton
             // 
             this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddButton.Location = new System.Drawing.Point(397, 283);
+            this.AddButton.Location = new System.Drawing.Point(397, 289);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(146, 81);
             this.AddButton.TabIndex = 13;
@@ -189,7 +189,7 @@
             this.AcceptButton = this.ResultButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 469);
+            this.ClientSize = new System.Drawing.Size(553, 469);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.Value10Button);
             this.Controls.Add(this.Value6Button);

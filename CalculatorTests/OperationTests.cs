@@ -18,8 +18,10 @@ namespace CalculatorTests
         [TestMethod]
         public void TestSubtraction()
         {
-            Assert.AreEqual(Operations.Subtract(2, 1), 1);
-            Assert.AreEqual(Operations.Subtract(2.17M, 2.07M), 0.1M);
+            AddOperator subtractionExpression = new AddOperator();
+            subtractionExpression.SetFirstOperand(new Value(2.17M));
+            subtractionExpression.SetSecondOperand(new Value(2.07M));
+            Assert.AreEqual(subtractionExpression, 0.1M);
        }
     }
 }
