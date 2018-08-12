@@ -70,25 +70,23 @@ namespace Calculator
 
         private void OnValueButtonClicked(int inValue)
         {
-            if (m_FirstValue != null && m_AddPressed)
+            if (m_FirstValue != null && m_OperatorPressed)
             {
                 (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(inValue));
             }
             else
             {
                 m_FirstValue = new Value(inValue);
+                m_CurrentExpression = m_FirstValue;
             }
+            RefreshResult();
         }
 
         private void ResultButton_Click(object sender, EventArgs e)
         {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.Evaluate().ToString();
-            }
-            else if (m_FirstValue != null)
-            {
-                Display.Text = m_FirstValue.Evaluate().ToString();
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
             }
             else
             {
@@ -96,27 +94,34 @@ namespace Calculator
             }
             m_FirstValue = null;
             m_CurrentExpression = null;
-            m_AddPressed = false;
+            m_OperatorPressed = false;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            m_AddPressed = true;
+            m_OperatorPressed = true;
             AddOperator addOperation = new AddOperator();
             addOperation.SetFirstOperand(m_FirstValue);
             m_CurrentExpression = addOperation;
+            RefreshResult();
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
-            m_AddPressed = true;
+            m_OperatorPressed = true;
             SubtractionOperator subtractOperation = new SubtractionOperator();
             subtractOperation.SetFirstOperand(m_FirstValue);
             m_CurrentExpression = subtractOperation;
+            RefreshResult();
+        }
+
+        private void RefreshResult()
+        {
+            Display.Text = m_CurrentExpression.ToString();
         }
 
         private IExpression m_FirstValue;
-        private bool m_AddPressed;
+        private bool m_OperatorPressed;
         private IExpression m_CurrentExpression;
     }
 }

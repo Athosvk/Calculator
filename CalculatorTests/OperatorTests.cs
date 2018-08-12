@@ -4,7 +4,7 @@ using CalculatorInternals;
 namespace CalculatorTests
 {
     [TestClass]
-    public class OperationTests
+    public class OperatorTests
     {
         [TestMethod]
         public void TestAddition()
@@ -12,7 +12,7 @@ namespace CalculatorTests
             AddOperator addExpression = new AddOperator();
             addExpression.SetFirstOperand(new Value(1.5M));
             addExpression.SetSecondOperand(new Value(1.5M));
-            Assert.AreEqual(addExpression.Evaluate(), 3.0M);
+            Assert.AreEqual(3.0M, addExpression.Evaluate());
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace CalculatorTests
             SubtractionOperator subtractionExpression = new SubtractionOperator();
             subtractionExpression.SetFirstOperand(new Value(2.17M));
             subtractionExpression.SetSecondOperand(new Value(2.07M));
-            Assert.AreEqual(subtractionExpression.Evaluate(), 0.1M);
+            Assert.AreEqual(0.1M, subtractionExpression.Evaluate());
        }
     }
 }
