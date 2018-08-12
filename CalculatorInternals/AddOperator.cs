@@ -1,4 +1,6 @@
-﻿namespace CalculatorInternals
+﻿using System.Text;
+
+namespace CalculatorInternals
 {
     /// <summary>
     /// Represents an add operation
@@ -20,7 +22,12 @@
         /// <returns>The stringified representation</returns>
         public override string ToString()
         {
-            return m_FirstOperand.ToString() + " + " + m_SecondOperand.ToString();
+            StringBuilder stringBuilder = new StringBuilder(m_FirstOperand.ToString() + " + ");
+            if (m_SecondOperand != null)
+            {
+                stringBuilder.Append(m_SecondOperand.ToString());
+            }
+            return stringBuilder.ToString();
         }
     }
 }

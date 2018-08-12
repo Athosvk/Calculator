@@ -21,5 +21,13 @@ namespace CalculatorTests
             addOperation.SetSecondOperand(new Value(1.0M));
             Assert.AreEqual("1.0 + 1.0".Replace(" ", ""), addOperation.ToString().Replace(" ", ""));
         }
+
+        [TestMethod]
+        public void TestPrintIncompleteAdd()
+        {
+            AddOperator addOperation = new AddOperator();
+            addOperation.SetFirstOperand(new Value(1.0M));
+            Assert.AreEqual("1.0 + ".Replace(" ", ""), addOperation.ToString().Replace(" ", ""));
+        }
     }
 }

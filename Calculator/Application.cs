@@ -77,18 +77,16 @@ namespace Calculator
             else
             {
                 m_FirstValue = new Value(inValue);
+                m_CurrentExpression = m_FirstValue;
             }
+            RefreshResult();
         }
 
         private void ResultButton_Click(object sender, EventArgs e)
         {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.Evaluate().ToString();
-            }
-            else if (m_FirstValue != null)
-            {
-                Display.Text = m_FirstValue.Evaluate().ToString();
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
             }
             else
             {
@@ -105,6 +103,7 @@ namespace Calculator
             AddOperator addOperation = new AddOperator();
             addOperation.SetFirstOperand(m_FirstValue);
             m_CurrentExpression = addOperation;
+            RefreshResult();
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
@@ -113,6 +112,12 @@ namespace Calculator
             SubtractionOperator subtractOperation = new SubtractionOperator();
             subtractOperation.SetFirstOperand(m_FirstValue);
             m_CurrentExpression = subtractOperation;
+            RefreshResult();
+        }
+
+        private void RefreshResult()
+        {
+            Display.Text = m_CurrentExpression.ToString();
         }
 
         private IExpression m_FirstValue;
