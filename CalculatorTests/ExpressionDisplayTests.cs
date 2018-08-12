@@ -61,7 +61,24 @@ namespace CalculatorTests
         {
             BinaryOperator multiplyOperation = new MultiplicationOperator();
             multiplyOperation.SetFirstOperand(new Value(1.0M));
-            Assert.AreEqual("1 X ".Replace(" ", ""), multiplyOperation.ToString().Replace(" ", ""));
+            Assert.AreEqual("1 × ".Replace(" ", ""), multiplyOperation.ToString().Replace(" ", ""));
+        }
+
+        [TestMethod]
+        public void TestPrintDivisionExpression()
+        {
+            BinaryOperator divisionOperation = new DivisionOperator();
+            divisionOperation.SetFirstOperand(new Value(2.9M));
+            divisionOperation.SetSecondOperand(new Value(3.0M));
+            Assert.AreEqual("2.9 ÷ 3".Replace(" ", ""), divisionOperation.ToString().Replace(" ", ""));
+        }
+
+        [TestMethod]
+        public void TestPrintIncompleteDivide()
+        {
+            BinaryOperator multiplyOperation = new DivisionOperator();
+            multiplyOperation.SetFirstOperand(new Value(1.0M));
+            Assert.AreEqual("1 ÷ ".Replace(" ", ""), multiplyOperation.ToString().Replace(" ", ""));
         }
     }
 }
