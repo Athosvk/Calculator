@@ -23,5 +23,14 @@ namespace CalculatorTests
             subtractionExpression.SetSecondOperand(new Value(2.07M));
             Assert.AreEqual(0.1M, subtractionExpression.Evaluate());
        }
+
+        [TestMethod]
+        public void TestMultiplication()
+        {
+            MultiplicationOperator multiplicationExpression = new MultiplicationOperator();
+            multiplicationExpression.SetFirstOperand(new Value(1.1M));
+            multiplicationExpression.SetSecondOperand(new Value(2M));
+            Assert.AreEqual(2.2M, multiplicationExpression.Evaluate());
+       }
     }
 }

@@ -3,7 +3,7 @@
 namespace CalculatorInternals
 {
     /// <summary>
-    /// Represents an add operation
+    /// Represents a subtraction operation
     /// </summary>
     public class SubtractionOperator : BinaryOperator
     {

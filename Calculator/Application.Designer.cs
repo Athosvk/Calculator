@@ -41,13 +41,14 @@
             this.Value6Button = new System.Windows.Forms.Button();
             this.Value10Button = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SubtractButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
+            this.MultiplyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ResultButton
             // 
-            this.ResultButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResultButton.Location = new System.Drawing.Point(387, 445);
             this.ResultButton.Name = "ResultButton";
             this.ResultButton.Size = new System.Drawing.Size(146, 81);
@@ -177,7 +178,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.Location = new System.Drawing.Point(387, 361);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(146, 81);
@@ -186,16 +187,16 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // button1
+            // SubtractButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(387, 273);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 81);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "-";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.SubtractButton_Click);
+            this.SubtractButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubtractButton.Location = new System.Drawing.Point(387, 273);
+            this.SubtractButton.Name = "SubtractButton";
+            this.SubtractButton.Size = new System.Drawing.Size(146, 81);
+            this.SubtractButton.TabIndex = 14;
+            this.SubtractButton.Text = "−";
+            this.SubtractButton.UseVisualStyleBackColor = true;
+            this.SubtractButton.Click += new System.EventHandler(this.SubtractButton_Click);
             // 
             // ClearButton
             // 
@@ -208,14 +209,26 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
+            // MultiplyButton
+            // 
+            this.MultiplyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultiplyButton.Location = new System.Drawing.Point(387, 186);
+            this.MultiplyButton.Name = "MultiplyButton";
+            this.MultiplyButton.Size = new System.Drawing.Size(146, 81);
+            this.MultiplyButton.TabIndex = 16;
+            this.MultiplyButton.Text = "×";
+            this.MultiplyButton.UseVisualStyleBackColor = true;
+            this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
+            // 
             // Application
             // 
             this.AcceptButton = this.ResultButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 558);
+            this.ClientSize = new System.Drawing.Size(546, 540);
+            this.Controls.Add(this.MultiplyButton);
             this.Controls.Add(this.ClearButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SubtractButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.Value10Button);
             this.Controls.Add(this.Value6Button);
@@ -251,8 +264,9 @@
         private System.Windows.Forms.Button Value6Button;
         private System.Windows.Forms.Button Value10Button;
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SubtractButton;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button MultiplyButton;
     }
 }
 
