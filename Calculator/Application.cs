@@ -151,7 +151,7 @@ namespace Calculator
         {
             Keys pressedKey = a_Event.KeyCode;
          
-            if (pressedKey == Keys.Add || pressedKey == Keys.Oemplus)
+            if (pressedKey == Keys.Add || (pressedKey == Keys.Oemplus && a_Event.Shift))
             {
                 OnOperatorPressed(new AddOperator());
             }
