@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CalculatorInternals;
 
@@ -84,6 +77,11 @@ namespace Calculator
 
         private void ResultButton_Click(object sender, EventArgs e)
         {
+            Confirm();
+        }
+
+        private void Confirm()
+        {
             if (m_CurrentExpression != null)
             {
                 Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString("G29");
@@ -97,30 +95,35 @@ namespace Calculator
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            OnOperatorClick(new AddOperator());
+            OnOperatorPressed(new AddOperator());
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
-            OnOperatorClick(new SubtractionOperator());
+            OnOperatorPressed(new SubtractionOperator());
         }
 
         private void MultiplyButton_Click(object sender, EventArgs e)
         {
-            OnOperatorClick(new MultiplicationOperator());
+            OnOperatorPressed(new MultiplicationOperator());
         }
 
         private void DivisionButton_Click(object sender, EventArgs e)
         {
-            OnOperatorClick(new DivisionOperator());
+            OnOperatorPressed(new DivisionOperator());
         }
 
         /// <summary>
         /// Invoked when an operator has been clicked
         /// </summary>
         /// <param name="a_Operator">The operator the user intended to invoke</param>
-        private void OnOperatorClick(BinaryOperator a_Operator)
+        private void OnOperatorPressed(BinaryOperator a_Operator)
         {
+            if (m_CurrentExpression == null)
+            {
+                // Early out as there is no initial value yet
+                return;
+            }
             a_Operator.SetFirstOperand(m_CurrentExpression);
             m_CurrentExpression = a_Operator;
             m_ValueBuilder.Clear();
@@ -142,6 +145,40 @@ namespace Calculator
         {
             m_CurrentExpression = null;
             m_ValueBuilder.Clear();
+        }
+
+        private void Application_KeyDown(object a_Sender, KeyEventArgs a_Event)
+        {
+            Keys pressedKey = a_Event.KeyCode;
+         
+            if (pressedKey == Keys.Add || pressedKey == Keys.Oemplus)
+            {
+                OnOperatorPressed(new AddOperator());
+            }
+            else if (pressedKey == Keys.Subtract || pressedKey == Keys.OemMinus)
+            {
+                OnOperatorPressed(new SubtractionOperator());
+            }
+            else if (pressedKey == Keys.Multiply || (pressedKey == Keys.D8 && a_Event.Shift))
+            {
+                OnOperatorPressed(new MultiplicationOperator());
+            }
+            else if (pressedKey == Keys.Divide || pressedKey == Keys.OemQuestion)
+            {
+                OnOperatorPressed(new DivisionOperator());
+            }
+            else if (pressedKey >= Keys.NumPad0 && pressedKey <= Keys.NumPad9)
+            {
+                OnDigitPressed((byte)(pressedKey - Keys.NumPad0));
+            }
+            else if (pressedKey >= Keys.D0 && pressedKey <= Keys.D9)
+            {
+                OnDigitPressed((byte)(pressedKey - Keys.D0));
+            }
+            else if (pressedKey == Keys.Return)
+            {
+                Confirm();
+            }
         }
 
         private ValueBuilder m_ValueBuilder = new ValueBuilder();

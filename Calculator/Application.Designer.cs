@@ -255,8 +255,10 @@
             this.Controls.Add(this.Value7Button);
             this.Controls.Add(this.Display);
             this.Controls.Add(this.ResultButton);
+            this.KeyPreview = true;
             this.Name = "Application";
             this.Text = "Calculator";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Application_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
