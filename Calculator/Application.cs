@@ -84,7 +84,7 @@ namespace Calculator
         {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString("G29");
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
             }
             else
             {
@@ -128,6 +128,15 @@ namespace Calculator
             m_CurrentExpression = a_Operator;
             m_ValueBuilder.Clear();
             RefreshResult();
+            m_SeparatorPressed = false;
+        }
+
+        private void SeparatorButton_Click(object sender, EventArgs e)
+        {
+            if (!m_SeparatorPressed)
+            {
+                m_ValueBuilder.PushSeparator();
+            }
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -145,6 +154,7 @@ namespace Calculator
         {
             m_CurrentExpression = null;
             m_ValueBuilder.Clear();
+            m_SeparatorPressed = false;
         }
 
         private void Application_KeyDown(object a_Sender, KeyEventArgs a_Event)
@@ -180,8 +190,8 @@ namespace Calculator
                 Confirm();
             }
         }
-
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
+        private bool m_SeparatorPressed;
     }
 }

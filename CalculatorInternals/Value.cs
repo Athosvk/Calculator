@@ -28,7 +28,7 @@
         {
             // 'G' specifier specifies precision, which has a max of 29 digits
             // for decimals anyway
-            return m_Value.ToString("G29");
+            return m_Value.ToString();
         }
 
         private decimal m_Value;

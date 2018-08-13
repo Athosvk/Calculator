@@ -45,6 +45,7 @@
             this.ClearButton = new System.Windows.Forms.Button();
             this.MultiplyButton = new System.Windows.Forms.Button();
             this.DivisionButton = new System.Windows.Forms.Button();
+            this.SeparatorButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ResultButton
@@ -158,7 +159,7 @@
             // Value3Button
             // 
             this.Value3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Value3Button.Location = new System.Drawing.Point(252, 360);
+            this.Value3Button.Location = new System.Drawing.Point(252, 361);
             this.Value3Button.Name = "Value3Button";
             this.Value3Button.Size = new System.Drawing.Size(119, 81);
             this.Value3Button.TabIndex = 10;
@@ -217,6 +218,7 @@
             // 
             // ClearButton
             // 
+            this.ClearButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClearButton.Location = new System.Drawing.Point(127, 99);
             this.ClearButton.Name = "ClearButton";
@@ -251,12 +253,25 @@
             this.DivisionButton.UseVisualStyleBackColor = true;
             this.DivisionButton.Click += new System.EventHandler(this.DivisionButton_Click);
             // 
+            // SeparatorButton
+            // 
+            this.SeparatorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SeparatorButton.Location = new System.Drawing.Point(252, 447);
+            this.SeparatorButton.Name = "SeparatorButton";
+            this.SeparatorButton.Size = new System.Drawing.Size(119, 81);
+            this.SeparatorButton.TabIndex = 18;
+            this.SeparatorButton.TabStop = false;
+            this.SeparatorButton.Text = ".";
+            this.SeparatorButton.UseVisualStyleBackColor = true;
+            this.SeparatorButton.Click += new System.EventHandler(this.SeparatorButton_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ClearButton;
             this.ClientSize = new System.Drawing.Size(546, 540);
+            this.Controls.Add(this.SeparatorButton);
             this.Controls.Add(this.DivisionButton);
             this.Controls.Add(this.MultiplyButton);
             this.Controls.Add(this.ClearButton);
@@ -302,6 +317,7 @@
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button MultiplyButton;
         private System.Windows.Forms.Button DivisionButton;
+        private System.Windows.Forms.Button SeparatorButton;
     }
 }
 
