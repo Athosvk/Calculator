@@ -87,5 +87,15 @@ namespace CalculatorTests
             builder.PushDigit(4);
             Assert.AreEqual(0.14M, builder.GetValue());
         }
+
+        [TestMethod]
+        public void TestTrailingSeparator()
+        {
+            ValueBuilder builder = new ValueBuilder();
+            builder.PushDigit(1);
+            builder.PushDigit(2);
+            builder.PushSeparator();
+            Assert.AreEqual(12, builder.GetValue());
+        }
     }
 }
