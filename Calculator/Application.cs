@@ -130,6 +130,11 @@ namespace Calculator
             RefreshResult();
         }
 
+        private void SeparatorButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
@@ -180,7 +185,6 @@ namespace Calculator
                 Confirm();
             }
         }
-
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
     }
