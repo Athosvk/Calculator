@@ -73,6 +73,8 @@ namespace CalculatorInternals
         public void Clear()
         {
             m_Digits.Clear();
+            m_SeparatorPushed = false;
+            m_SeparatorPosition = -1;
         }
 
         List<byte> m_Digits = new List<byte>();

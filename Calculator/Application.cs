@@ -84,7 +84,7 @@ namespace Calculator
         {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString("G29");
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
             }
             else
             {

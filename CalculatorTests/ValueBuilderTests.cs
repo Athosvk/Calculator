@@ -97,5 +97,18 @@ namespace CalculatorTests
             builder.PushSeparator();
             Assert.AreEqual(12, builder.GetValue());
         }
+
+        [TestMethod]
+        public void TestSeparatorAfterClear()
+        {
+            ValueBuilder builder = new ValueBuilder();
+            builder.PushSeparator();
+            builder.PushDigit(1);
+
+            builder.Clear();
+
+            builder.PushDigit(2);
+            Assert.AreEqual(2, builder.GetValue());
+        }
     }
 }
