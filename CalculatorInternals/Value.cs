@@ -11,6 +11,12 @@
             m_Value = a_Value;
         }
 
+        /// <param name="a_Value">The value itself</param>
+        public static explicit operator Value(decimal a_Value)
+        {
+            return new Value(a_Value);
+        }
+
         /// <summary>
         /// Evaluates (folds) the expression to a single value, evaluating all its operands
         /// </summary>
