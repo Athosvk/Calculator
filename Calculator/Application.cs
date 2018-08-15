@@ -72,6 +72,7 @@ namespace Calculator
             {
                 (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(m_ValueBuilder.GetValue()));
             }
+            m_CanPushOperator = true;
             RefreshResult();
         }
 
@@ -119,7 +120,7 @@ namespace Calculator
         /// <param name="a_Operator">The operator the user intended to invoke</param>
         private void OnOperatorPressed(BinaryOperator a_Operator)
         {
-            if (m_CurrentExpression == null)
+            if (m_CurrentExpression == null || !m_CanPushOperator)
             {
                 // Early out as there is no initial value yet
                 return;
@@ -129,6 +130,7 @@ namespace Calculator
             m_ValueBuilder.Clear();
             RefreshResult();
             m_SeparatorPressed = false;
+            m_CanPushOperator = false;
         }
 
         private void SeparatorButton_Click(object sender, EventArgs e)
@@ -136,6 +138,7 @@ namespace Calculator
             if (!m_SeparatorPressed)
             {
                 m_ValueBuilder.PushSeparator();
+                m_CanPushOperator = true;
             }
         }
 
@@ -155,6 +158,7 @@ namespace Calculator
             m_CurrentExpression = null;
             m_ValueBuilder.Clear();
             m_SeparatorPressed = false;
+            m_CanPushOperator = true;
         }
 
         private void Application_KeyDown(object a_Sender, KeyEventArgs a_Event)
@@ -193,5 +197,6 @@ namespace Calculator
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
         private bool m_SeparatorPressed;
+        private bool m_CanPushOperator = true;
     }
 }
