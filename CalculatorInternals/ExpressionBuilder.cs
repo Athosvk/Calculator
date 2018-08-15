@@ -10,19 +10,6 @@ namespace CalculatorInternals
     public class ExpressionBuilder
     {
         /// <summary>
-        /// The order of precedence for the operators
-        /// </summary>
-        /// <param name="a_PrecenceOrder"></param>
-        public ExpressionBuilder(List<Type> a_PrecenceOrder = null)
-        {
-            a_PrecenceOrder = a_PrecenceOrder ?? new List<Type>();
-            if (!a_PrecenceOrder.All(type => type.BaseType == typeof(BinaryOperator)))
-            {
-                throw new ArgumentException("Types of precedence order should be operators only");
-            }
-        }
-
-        /// <summary>
         /// Pushes a value into the expression, based upon the previous input
         /// </summary>
         /// <param name="a_Value">The value to add to the expression</param>

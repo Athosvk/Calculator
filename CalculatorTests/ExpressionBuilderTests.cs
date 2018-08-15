@@ -52,13 +52,5 @@ namespace CalculatorTests
             addOperation.SetSecondOperand((Value)4);
             Assert.AreEqual(addOperation, expressionBuilder.GenerateExpression());
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Non-operator types should not be allowed")]
-        public void TestPrecedenceValidation()
-        {
-            List<Type> invalidPrecedenceList = new List<Type> { typeof(Value), typeof(MultiplicationOperator) };
-            ExpressionBuilder expressionBuilder = new ExpressionBuilder(invalidPrecedenceList);
-        }
     }
 }
