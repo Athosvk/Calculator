@@ -3,9 +3,9 @@
 namespace CalculatorInternals
 {
     /// <summary>
-    /// Represents a subtraction operation
+    /// Represents a multiplication operation
     /// </summary>
-    public class SubtractionOperator : BinaryOperator
+    public class MultiplicationOperator : BinaryOperator
     {
         /// <summary>
         /// Evaluates (folds) the expression to a single value, evaluating all its operands
@@ -13,16 +13,16 @@ namespace CalculatorInternals
         /// <returns>The result of the expression</returns>
         public override decimal Evaluate()
         {
-            return m_FirstOperand.Evaluate() - m_SecondOperand.Evaluate();
+            return m_FirstOperand.Evaluate() * m_SecondOperand.Evaluate();
         }
 
         /// <summary>
-        /// Converts the subtraction expression to a string representation
+        /// Converts the multiplication expression to a string representation
         /// </summary>
-        /// <returns>The stringified representation of the subtraction expression</returns>
+        /// <returns>The stringified representation of the multiplication expression</returns>
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder(m_FirstOperand.ToString() + " - ");
+            StringBuilder stringBuilder = new StringBuilder(m_FirstOperand.ToString() + " × ");
             if (m_SecondOperand != null)
             {
                 stringBuilder.Append(m_SecondOperand.ToString());

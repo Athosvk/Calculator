@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CalculatorInternals;
 
@@ -79,47 +72,131 @@ namespace Calculator
             {
                 (m_CurrentExpression as BinaryOperator).SetSecondOperand(new Value(m_ValueBuilder.GetValue()));
             }
+            m_CanPushOperator = true;
             RefreshResult();
         }
 
         private void ResultButton_Click(object sender, EventArgs e)
         {
+            Confirm();
+        }
+
+        private void Confirm()
+        {
             if (m_CurrentExpression != null)
             {
-                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString("G29");
+                Display.Text = m_CurrentExpression.ToString() + " = " + m_CurrentExpression.Evaluate().ToString();
             }
             else
             {
                 Display.Text = "Nothing was entered";
             }
-            m_CurrentExpression = null;
-            m_ValueBuilder.Clear();
+            Clear();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            AddOperator addOperation = new AddOperator();
-            addOperation.SetFirstOperand(m_CurrentExpression);
-            m_CurrentExpression = addOperation;
-            m_ValueBuilder.Clear();
-            RefreshResult();
+            OnOperatorPressed(new AddOperator());
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
         {
-            SubtractionOperator subtractOperation = new SubtractionOperator();
-            subtractOperation.SetFirstOperand(m_CurrentExpression);
-            m_CurrentExpression = subtractOperation;
+            OnOperatorPressed(new SubtractionOperator());
+        }
+
+        private void MultiplyButton_Click(object sender, EventArgs e)
+        {
+            OnOperatorPressed(new MultiplicationOperator());
+        }
+
+        private void DivisionButton_Click(object sender, EventArgs e)
+        {
+            OnOperatorPressed(new DivisionOperator());
+        }
+
+        /// <summary>
+        /// Invoked when an operator has been clicked
+        /// </summary>
+        /// <param name="a_Operator">The operator the user intended to invoke</param>
+        private void OnOperatorPressed(BinaryOperator a_Operator)
+        {
+            if (m_CurrentExpression == null || !m_CanPushOperator)
+            {
+                // Early out as there is no initial value yet
+                return;
+            }
+            a_Operator.SetFirstOperand(m_CurrentExpression);
+            m_CurrentExpression = a_Operator;
             m_ValueBuilder.Clear();
+            RefreshResult();
+            m_SeparatorPressed = false;
+            m_CanPushOperator = false;
+        }
+
+        private void SeparatorButton_Click(object sender, EventArgs e)
+        {
+            if (!m_SeparatorPressed)
+            {
+                m_ValueBuilder.PushSeparator();
+                m_CanPushOperator = true;
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            Clear();
             RefreshResult();
         }
 
         private void RefreshResult()
         {
-            Display.Text = m_CurrentExpression.ToString();
+            Display.Text = m_CurrentExpression != null ? m_CurrentExpression.ToString() : "";
+        }
+        
+        private void Clear()
+        {
+            m_CurrentExpression = null;
+            m_ValueBuilder.Clear();
+            m_SeparatorPressed = false;
+            m_CanPushOperator = true;
         }
 
+        private void Application_KeyDown(object a_Sender, KeyEventArgs a_Event)
+        {
+            Keys pressedKey = a_Event.KeyCode;
+         
+            if (pressedKey == Keys.Add || (pressedKey == Keys.Oemplus && a_Event.Shift))
+            {
+                OnOperatorPressed(new AddOperator());
+            }
+            else if (pressedKey == Keys.Subtract || pressedKey == Keys.OemMinus)
+            {
+                OnOperatorPressed(new SubtractionOperator());
+            }
+            else if (pressedKey == Keys.Multiply || (pressedKey == Keys.D8 && a_Event.Shift))
+            {
+                OnOperatorPressed(new MultiplicationOperator());
+            }
+            else if (pressedKey == Keys.Divide || pressedKey == Keys.OemQuestion)
+            {
+                OnOperatorPressed(new DivisionOperator());
+            }
+            else if (pressedKey >= Keys.NumPad0 && pressedKey <= Keys.NumPad9)
+            {
+                OnDigitPressed((byte)(pressedKey - Keys.NumPad0));
+            }
+            else if (pressedKey >= Keys.D0 && pressedKey <= Keys.D9)
+            {
+                OnDigitPressed((byte)(pressedKey - Keys.D0));
+            }
+            else if (pressedKey == Keys.Return)
+            {
+                Confirm();
+            }
+        }
         private ValueBuilder m_ValueBuilder = new ValueBuilder();
         private IExpression m_CurrentExpression;
+        private bool m_SeparatorPressed;
+        private bool m_CanPushOperator = true;
     }
 }
